@@ -20,4 +20,14 @@ module Enumerable
     false
   end
 
+  def filter
+    case block_given?
+    when false
+      to_enum
+    when true
+      filter_arr = []
+      each { |n| filter_arr.push(n) if yield n }
+      filter_arr
+    end
+  end
 end
